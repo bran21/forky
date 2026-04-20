@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "chains": {
+      "source": "zeriontech/zerion-ai",
+      "sourceType": "github",
+      "computedHash": "e9b8be3bc514f149c1a5de2a112c3a5bd9fbc34c746ab60f3950169fc5c9fdbd"
+    },
+    "wallet-analysis": {
+      "source": "zeriontech/zerion-ai",
+      "sourceType": "github",
+      "computedHash": "34882e2db5707cb24937a3d41ce60f6b407fa525580632dac370d4d00e11f165"
+    },
+    "wallet-trading": {
+      "source": "zeriontech/zerion-ai",
+      "sourceType": "github",
+      "computedHash": "a8c52aa096f7e41f453bc591a0e7d1d3392118e82ef98dca12d253bfebb3b633"
+    },
+    "zerion": {
+      "source": "zeriontech/zerion-ai",
+      "sourceType": "github",
+      "computedHash": "069f8369a861d61a12c98c214e3522f9831ae21b78a17a4a839d71e4439f4778"
+    }
+  }
+}
