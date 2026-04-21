@@ -110,6 +110,14 @@ Start here:
 - [OpenClaw example](./examples/openclaw/README.md)
 - [CLI usage](./cli/README.md)
 
+### Chat Bots (Discord / Telegram)
+
+Use this if you are building an interactive AI bot using popular chat platform APIs.
+
+Start here:
+
+- [Discord & Telegram implementations](./docs/discord-telegram-bots.md)
+
 ## 4. Run the first wallet analysis
 
 ### MCP quickstart

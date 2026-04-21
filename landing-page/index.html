@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Smart Transactoors | Unified Wallet Analysis & Trading</title>
+    <meta name="description"
+        content="Integrate your AI agents with the Zerion developer ecosystem. The self-contained toolkit for wallet analysis and autonomous trading via MCP and OpenClaw CLI.">
+
+    <!-- Google Fonts: Inter for a clean, premium look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <!-- Using text imitating the Zerion brand font vibe -->
+                <span class="logo-mark"></span>
+                <span>Forky AI</span>
+            </div>
+            <div class="nav-links">
+                <a href="#how-it-works">How it Works</a>
+                <a href="#faq">FAQ</a>
+                <a href="#docs" class="btn btn-primary">View Docs</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-badge">Now open for AI developers</div>
+            <h1 class="hero-title">Empower Your Agents with <span class="highlight">Zerion</span></h1>
+            <p class="hero-subtitle">The unified integration toolkit for providing AI agents with real-time wallet
+                analysis, portfolio tracking, and autonomous trading capabilities.</p>
+            <div class="hero-actions">
+                <a href="#docs" class="btn btn-primary btn-large">Get Started</a>
+                <a href="https://github.com/bran21/forky" target="_blank" class="btn btn-secondary btn-large">View
+                    GitHub</a>
+            </div>
+            <div class="terminal-mock">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="terminal-body">
+                    <pre><code>$ npx skills add zeriontech/zerion-ai
+Installing skills: wallet-analysis, wallet-trading...
+Done! Your agent is now ready to interact with DeFi.</code></pre>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- How It Works / Features -->
+    <section id="how-it-works" class="features section-padding">
+        <div class="container">
+            <h2 class="section-title">Everything your Agent Needs</h2>
+            <p class="section-subtitle">A self-contained integration path bridging the gap between LLMs and DeFi.</p>
+
+            <div class="grid features-grid">
+                <!-- Config Feature -->
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Dual Integration Paths</h3>
+                    <p>Native support for <strong>Hosted MCP</strong> (used by Cursor, Claude) and an elegant
+                        <strong>OpenClaw/JSON-first CLI</strong> for raw programmatic access.
+                    </p>
+                </div>
+
+                <!-- Analysis Feature -->
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Wallet Analysis</h3>
+                    <p>Read-only operations to fetch portfolio holdings, granular token positions, transaction
+                        histories, and real-time PnL analytics via <code>wallet-analysis</code>.</p>
+                </div>
+
+                <!-- Trading Feature -->
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Autonomous Trading</h3>
+                    <p>Execute advanced on-chain primitives: token swaps, cross-chain bridging, and targeted buy/sell
+                        operations via the <code>wallet-trading</code> skill.</p>
+                </div>
+
+                <!-- Pay per call -->
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3>Frictionless x402 Protocol</h3>
+                    <p>No API keys required. Natively integrates x402 to auto-pay fractions of a cent ($0.01 USDC) per
+                        data pull directly from agent-managed wallets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        How do I authenticate my agent?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Zerion AI offers two paths: 1) Traditional API Keys (suitable for high-volume deployments),
+                            or 2) x402 Pay-per-call authentication, which securely processes microtransactions using the
+                            agent's EVM or Solana wallet without requiring centralized registration.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        What chains are supported?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Zerion AI provides universal coverage across major environments. The <code>chains</code>
+                            skill dynamically lists all actively supported networks, including Ethereum, Base, Optimism,
+                            Solana, and more.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Can the agent manage real funds?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes. Using the <code>wallet-trading</code> component, agents can be provisioned with
+                            operational wallets to perform autonomous token swaps and bridging operations. Proper use of
+                            security policies is advised for production systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docs CTA Section -->
+    <section id="docs" class="docs-cta section-padding">
+        <div class="container text-center">
+            <h2 class="section-title">Ready to Integrate?</h2>
+            <p class="section-subtitle">Explore our technical documentation and agent toolkits.</p>
+
+            <div class="docs-links grid">
+                <a href="https://github.com/zeriontech/zerion-ai/tree/main/mcp" class="doc-link-card" target="_blank">
+                    <h4>MCP Integration Docs</h4>
+                    <p>Learn how to connect Claude, Cursor, and other MCP-native clients.</p>
+                </a>
+                <a href="https://github.com/zeriontech/zerion-ai/tree/main/cli" class="doc-link-card" target="_blank">
+                    <h4>CLI Interface Docs</h4>
+                    <p>Master the JSON-first CLI for predictable programmatic execution.</p>
+                </a>
+                <a href="https://github.com/zeriontech/zerion-ai/blob/main/docs/discord-telegram-bots.md"
+                    class="doc-link-card" target="_blank">
+                    <h4>Building Chat Bots</h4>
+                    <p>Patterns for connecting Zerion AI to external messaging platforms.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="logo-mark"></span> <strong>Powered By Zerion</strong>
+            </div>
+            <p class="footer-copy">&copy; 2026 Zerion. Empowering the decentralized web.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
