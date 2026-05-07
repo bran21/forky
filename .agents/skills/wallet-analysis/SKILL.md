@@ -138,7 +138,7 @@ Use `zerion chains` to inspect the broader chain catalog, but stick to the IDs a
 - **`missing_api_key`**: Set `ZERION_API_KEY` or add `--x402` flag
 - **`unsupported_chain`**: Run `zerion chains` to check valid chain IDs
 - **Empty positions/transactions**: Wallet may be inactive or very new
-- **`api_error` with status 429**: Rate limited -- wait or switch to x402
+- **`api_error` with status 401/403/429**: API key limit reached. The CLI will automatically fallback to x402 if `WALLET_PRIVATE_KEY` is present. Otherwise, wait or append the `--x402` flag.
 - **ENS name fails**: Retry with the resolved 0x address if upstream name resolution is unavailable
 
 For worked examples, see [EXAMPLES.md](EXAMPLES.md).

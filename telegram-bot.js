@@ -62,7 +62,8 @@ bot.command('zerion', async (ctx) => {
 Rule 1: If a user says "buy X", use "npx zerion swap <default_token> X"
 Rule 2: "What is my balance?" -> "npx zerion portfolio main"
 Rule 3: Always add "--wallet main" to trading commands unless specified otherwise.
-Rule 4: SCOPED POLICY ENFORCEMENT - You are chain-locked to 'base'. You must add '--chain base' to all swap/send commands. Do NOT execute swaps larger than 0.1 ETH. Expire any trading session state after 24 hours.`
+Rule 4: SCOPED POLICY ENFORCEMENT - You are chain-locked to 'base'. You must add '--chain base' to all swap/send commands. Do NOT execute swaps larger than 0.1 ETH. Expire any trading session state after 24 hours.
+Rule 5: If the CLI returns an API error (e.g. rate limit, overused API key, 401, 403, 429), retry the exact same command but append the "--x402" flag to use pay-per-call.`
       },
       { role: 'user', content: userQuery }
     ];
@@ -128,6 +129,19 @@ Rule 4: SCOPED POLICY ENFORCEMENT - You are chain-locked to 'base'. You must add
         '❌ An error occurred during execution! Check the console.'
     );
   }
+});
+
+// Welcome message for new users
+bot.start((ctx) => {
+  ctx.reply(
+    "👋 Welcome to the Zerion AI Trading Bot!\n\n" +
+    "I am your expert Web3 trading assistant. I can analyze wallets, track portfolios, and execute autonomous trades across multiple chains.\n\n" +
+    "To interact with me, just use the /zerion command followed by your prompt.\n\n" +
+    "For example:\n" +
+    "• /zerion What is the portfolio of vitalik.eth?\n" +
+    "• /zerion Swap 0.001 ETH to USDC on base\n\n" +
+    "Let's get trading! 🚀"
+  );
 });
 
 bot.launch();

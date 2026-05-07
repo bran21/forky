@@ -287,8 +287,8 @@ Wallets are encrypted with AES-256-GCM via the Open Wallet Standard (OWS) vault 
 | `wallet_not_found` | Wallet name doesn't exist in OWS vault | Run `zerion wallet list` to check |
 | `unsupported_chain` | Invalid `--chain` value | Run `zerion chains` for valid IDs |
 | `unsupported_positions_filter` | Invalid `--positions` value | Use `all`, `simple`, or `defi` |
-| `api_error` status 401 | Invalid API key | Check key at dashboard.zerion.io |
-| `api_error` status 429 | Rate limited | Wait, reduce frequency, or use x402 |
+| `api_error` status 401/403 | Invalid/Overused key | Check key at dashboard.zerion.io or use x402 (auto-fallback if WALLET_PRIVATE_KEY is set) |
+| `api_error` status 429 | Rate limited | Wait, reduce frequency, or use x402 (auto-fallback if WALLET_PRIVATE_KEY is set) |
 | `api_error` status 400 | Invalid address or ENS failed | Retry with 0x hex address |
 | `unexpected_error` | `WALLET_PRIVATE_KEY` missing in x402 | Export the private key or disable x402 |
 | `unexpected_error` | Node.js < 20 | Upgrade Node.js |

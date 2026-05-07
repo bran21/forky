@@ -48,9 +48,9 @@ export async function fetchAPI(pathname, params = {}, useX402 = false, isRetry =
   }
 
   if (!response.ok) {
-    // Hybrid fallback: If rate-limited on standard API and we have a wallet key, fallback to x402
-    if (response.status === 429 && !useX402 && !isRetry && process.env.WALLET_PRIVATE_KEY) {
-      process.stderr.write(`\\x1b[33m⚠ API rate limit hit (429). Falling back to x402 pay-per-call for ${pathname}...\\x1b[0m\\n`);
+    // Hybrid fallback: If rate-limited or quota exceeded on standard API and we have a wallet key, fallback to x402
+    if ([401, 403, 429].includes(response.status) && !useX402 && !isRetry && process.env.WALLET_PRIVATE_KEY) {
+      process.stderr.write(`\\x1b[33m⚠ API error (${response.status}). Falling back to x402 pay-per-call for ${pathname}...\\x1b[0m\\n`);
       return fetchAPI(pathname, params, true, true);
     }
 
