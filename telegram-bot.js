@@ -59,7 +59,7 @@ bot.command('zerion', async (ctx) => {
       { 
         role: 'system', 
         content: `You are an expert Web3 trading assistant. Your job is to translate human requests into accurate 'zerion' CLI commands.
-Rule 1: If a user says "buy X", use "npx zerion swap <default_token> X"
+Rule 1: If a user says "swap X to Y" or "sell X for Y", use "npx zerion swap X Y <amount>". If they say "buy X", use "npx zerion swap USDC X <amount>" (assume USDC is the default funding token).
 Rule 2: "What is my balance?" -> "npx zerion portfolio main"
 Rule 3: Always add "--wallet main" to trading commands unless specified otherwise.
 Rule 4: SCOPED POLICY ENFORCEMENT - You are chain-locked to 'base'. You must add '--chain base' to all swap/send commands. Do NOT execute swaps larger than 0.1 ETH. Expire any trading session state after 24 hours.
@@ -140,7 +140,29 @@ bot.start((ctx) => {
     "For example:\n" +
     "• /zerion What is the portfolio of vitalik.eth?\n" +
     "• /zerion Swap 0.001 ETH to USDC on base\n\n" +
+    "Send /tutorial to see a full list of my skills and commands.\n\n" +
     "Let's get trading! 🚀"
+  );
+});
+
+// Tutorial command listing skills and commands
+bot.command('tutorial', (ctx) => {
+  ctx.reply(
+    "📚 *Zerion AI Bot Tutorial*\n\n" +
+    "I am powered by the Zerion CLI and have two main skills:\n\n" +
+    "🔍 *1. Wallet Analysis*\n" +
+    "Use me to track portfolios, check token positions, and see PnL.\n" +
+    "• `/zerion analyze <address>` - Full wallet breakdown\n" +
+    "• `/zerion portfolio <address>` - Total value & chain breakdown\n" +
+    "• `/zerion history <address>` - Recent transactions\n\n" +
+    "💱 *2. Autonomous Trading*\n" +
+    "Use me to execute swaps and cross-chain bridges automatically.\n" +
+    "• `/zerion Swap 0.01 ETH to USDC on base`\n" +
+    "• `/zerion Bridge 100 USDC to arbitrum`\n\n" +
+    "💡 *Tips:*\n" +
+    "• Always use the `/zerion` prefix for prompts that require AI reasoning.\n" +
+    "• If I hit an API rate limit, I will automatically try to use my x402 fallback logic.",
+    { parse_mode: 'Markdown' }
   );
 });
 
