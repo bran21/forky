@@ -86,7 +86,9 @@ register("agent", "delete-policy", agentDeletePolicy);
 // --- Config ---
 
 import configCmd from "./commands/config.js";
+import apikeyCmd from "./commands/apikey.js";
 registerSingle("config", configCmd);
+registerSingle("apikey", apikeyCmd);
 
 // --- Dispatch ---
 

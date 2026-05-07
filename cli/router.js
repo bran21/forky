@@ -68,6 +68,9 @@ function printUsage() {
     },
     other: {
       "chains": "List supported chains",
+      "apikey": "Show current API key (redacted) and its source",
+      "apikey set <key>": "Save API key to config",
+      "apikey unset": "Remove saved API key from config",
       "config set <key> <value>": "Set config (apiKey, defaultWallet, defaultChain, slippage)",
       "config unset <key>": "Remove a config value (resets to default)",
       "config list": "Show current configuration",

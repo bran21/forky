@@ -10,7 +10,7 @@ export function basicAuthHeader(key) {
   return `Basic ${Buffer.from(`${key}:`).toString("base64")}`;
 }
 
-export async function fetchAPI(pathname, params = {}, useX402 = false) {
+export async function fetchAPI(pathname, params = {}, useX402 = false, isRetry = false) {
   const apiKey = useX402 ? null : getApiKey();
   if (!useX402 && !apiKey) {
     const err = new Error(
@@ -48,6 +48,12 @@ export async function fetchAPI(pathname, params = {}, useX402 = false) {
   }
 
   if (!response.ok) {
+    // Hybrid fallback: If rate-limited on standard API and we have a wallet key, fallback to x402
+    if (response.status === 429 && !useX402 && !isRetry && process.env.WALLET_PRIVATE_KEY) {
+      process.stderr.write(`\\x1b[33m⚠ API rate limit hit (429). Falling back to x402 pay-per-call for ${pathname}...\\x1b[0m\\n`);
+      return fetchAPI(pathname, params, true, true);
+    }
+
     const err = new Error(
       `Zerion API error: ${response.status} ${response.statusText}`
     );

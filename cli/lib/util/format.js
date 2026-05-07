@@ -231,3 +231,98 @@ export function formatPnl(data) {
   if (p.totalFees != null) lines.push(`  Fees Paid:      ${usd(p.totalFees)}`);
   return lines.join("\n");
 }
+
+export function formatOverview(data) {
+  const walletLabel = data.label || data.wallet?.query || "Unknown";
+  const addr = data.wallet?.query || "";
+  const shortAddr = addr.length > 12 ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : addr;
+  const lines = [];
+
+  // Header
+  lines.push(`${BOLD}━━━ Wallet Analysis ━━━${RESET}`);
+  lines.push(`  ${BOLD}${walletLabel}${RESET}  ${DIM}${shortAddr}${RESET}`);
+  lines.push("");
+
+  // Portfolio
+  if (data.portfolio) {
+    const total = data.portfolio.total;
+    lines.push(`  ${BOLD}💰 Portfolio${RESET}  ${BOLD}${usd(total)}${RESET}`);
+    const ch = data.portfolio.change_1d;
+    if (ch) {
+      const absChange = usd(ch.absolute_1d);
+      const pctChange = pct(ch.percent_1d);
+      lines.push(`  ${DIM}24h:${RESET}  ${pctChange}  (${absChange})`);
+    }
+
+    // Top chains by value
+    if (data.portfolio.chains) {
+      const chainEntries = Object.entries(data.portfolio.chains)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+      if (chainEntries.length > 0) {
+        lines.push("");
+        lines.push(`  ${DIM}Top chains:${RESET}`);
+        for (const [chain, val] of chainEntries) {
+          lines.push(`    ${pad(chain, 22)} ${padStart(usd(val), 14)}`);
+        }
+      }
+    }
+    lines.push("");
+  }
+
+  // Top Positions
+  if (data.positions && data.positions.count > 0) {
+    lines.push(`  ${BOLD}📊 Top Positions${RESET}  (${data.positions.count} total)`);
+    lines.push(`  ${DIM}${pad("Token", 20)} ${pad("Chain", 14)} ${padStart("Value", 14)} ${padStart("Amount", 16)}${RESET}`);
+    lines.push(`  ${DIM}${"─".repeat(66)}${RESET}`);
+    for (const p of data.positions.top) {
+      const sym = p.symbol ? `${p.name} (${p.symbol})` : p.name;
+      const qty = p.quantity != null ? p.quantity.toFixed(4) : "-";
+      lines.push(`  ${pad(sym, 20)} ${pad(p.chain || "?", 14)} ${padStart(usd(p.value), 14)} ${padStart(qty, 16)}`);
+    }
+    lines.push("");
+  } else {
+    lines.push(`  ${DIM}📊 No positions data${RESET}`);
+    lines.push("");
+  }
+
+  // Recent Transactions
+  if (data.transactions && data.transactions.sampled > 0) {
+    lines.push(`  ${BOLD}📝 Recent Transactions${RESET}  (${data.transactions.sampled} sampled)`);
+    for (const tx of data.transactions.recent) {
+      const status = tx.status === "confirmed" ? `${GREEN}✓${RESET}` : tx.status === "pending" ? `${YELLOW}⏳${RESET}` : `${DIM}${tx.status || "?"}${RESET}`;
+      const type = tx.operation_type || "unknown";
+      const time = tx.mined_at ? new Date(tx.mined_at * 1000).toISOString().replace("T", " ").slice(0, 16) : "?";
+      lines.push(`  ${status} ${DIM}${time}${RESET}  ${type}`);
+      for (const t of tx.transfers || []) {
+        const dir = t.direction === "in" ? `${GREEN}+${RESET}` : `${RED}-${RESET}`;
+        const name = t.fungible_info?.symbol || t.fungible_info?.name || "?";
+        lines.push(`    ${dir} ${t.quantity || "?"} ${name}  ${DIM}${usd(t.value)}${RESET}`);
+      }
+    }
+    lines.push("");
+  } else {
+    lines.push(`  ${DIM}📝 No recent transactions${RESET}`);
+    lines.push("");
+  }
+
+  // PnL
+  if (data.pnl && data.pnl.available && data.pnl.summary) {
+    const s = data.pnl.summary;
+    lines.push(`  ${BOLD}📈 PnL${RESET}`);
+    if (s.total_gain != null) lines.push(`  Total Gain:     ${usd(s.total_gain)}`);
+    if (s.realized_gain != null) lines.push(`  Realized:       ${usd(s.realized_gain)}`);
+    if (s.unrealized_gain != null) lines.push(`  Unrealized:     ${usd(s.unrealized_gain)}`);
+  } else {
+    lines.push(`  ${DIM}📈 PnL not available${RESET}`);
+  }
+
+  // Failures
+  if (data.failures && data.failures.length > 0) {
+    lines.push("");
+    lines.push(`  ${YELLOW}⚠  Some data unavailable: ${data.failures.join(", ")}${RESET}`);
+  }
+
+  return lines.join("\n");
+}
+

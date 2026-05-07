@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -30,7 +30,14 @@ function parseSkillFrontmatter(content) {
 describe("skills directory", () => {
   it("has all expected skill directories", () => {
     const dirs = readdirSync(skillsDir, { withFileTypes: true })
-      .filter((d) => d.isDirectory())
+      .filter((d) => {
+        // Follow symlinks: isDirectory() returns false for symlinks
+        if (d.isDirectory()) return true;
+        if (d.isSymbolicLink()) {
+          try { return statSync(join(skillsDir, d.name)).isDirectory(); } catch { return false; }
+        }
+        return false;
+      })
       .map((d) => d.name)
       .sort();
     for (const name of EXPECTED_SKILLS) {

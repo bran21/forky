@@ -6,6 +6,7 @@
 import { fetchAPI } from "../../lib/api/client.js";
 import { summarizeAnalyze } from "../../lib/util/analyze.js";
 import { print, printError } from "../../lib/util/output.js";
+import { formatOverview } from "../../lib/util/format.js";
 import { isX402Enabled } from "../../lib/api/x402.js";
 import { resolveAddressOrWallet } from "../../lib/wallet/resolve.js";
 import { validateChain } from "../../lib/util/validate.js";
@@ -50,7 +51,7 @@ export default async function walletAnalyze(args, flags) {
     if (failures.length) summary.failures = failures;
     if (useX402) summary.auth = "x402";
 
-    print(summary);
+    print(summary, formatOverview);
   } catch (err) {
     printError(err.code || "analyze_error", err.message);
     process.exit(1);

@@ -60,7 +60,6 @@ These are the chain IDs currently accepted by the wallet commands in this repo:
 | Solana | `solana` |
 | Zora | `zora` |
 | Blast | `blast` |
-
 `zerion chains` may return a broader catalog. For `positions`, `history`, and `analyze`, use the IDs above unless the CLI validator is expanded.
 
 ## Using with analysis commands
